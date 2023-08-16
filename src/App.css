@@ -1,0 +1,417 @@
+@font-face {
+  font-family: 'Markot-Bold';
+  src: url('./Assets/Fonts/MarkOT-Bold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Markot-Book';
+  src: url('./Assets/Fonts/MarkOT-Book.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Markot-Regular';
+  src: url('./Assets/Fonts/MarkOT-Regular.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Markot-Thin';
+  src: url('./Assets/Fonts/MarkOT-Thin.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Markot';
+  src: url('./Assets/Fonts/MarkOT.otf') format('opentype');
+}
+
+/*-------------------HEADER--------------------*/
+/* styles for navbar */
+nav {
+  position: fixed;  
+  width: 100vw;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+}
+.navbar-links {
+  display: flex;
+  gap: 12px;
+  margin-right: 60px;
+}
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-family: 'Markot-Book';
+  font-size: 11px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ffc451;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.nav-link:hover::before {
+  transform: scaleX(1);
+}
+.nav-link.active {
+  color: #ffc451;
+}
+
+.signin-link{
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+.signin-link img{
+  margin-left: 10px;
+  height: 17px;
+  margin-bottom: 4px;
+  transition: transform 0.3s ease;
+}
+.signin-link:hover img {
+  transform: rotate(40deg);
+}
+/*styles for hamburger*/
+.container-Hamburger{
+  position: fixed;
+  width: 100vw;
+  background-color: rgba(0, 0, 0,0.2);
+  backdrop-filter: blur(10px);
+  display: none;
+  z-index: 100;
+}
+.hamburger-header{
+display: flex;
+}
+.ham-logo-container{
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.ham-nav-links{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+.ham-signin-link{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.Hamburger{
+  position: absolute;
+  top: 1px;
+}
+/*animation hamberger*/
+
+.open {
+  height: 75px; /* Ajustez la hauteur selon les besoins */
+  transition: height 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955),opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+.closed {
+  transition: height 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955),opacity 0.5s ease-in-out;
+  height: 0;
+  opacity: 0;
+}
+/*Styles for Landing page*/
+/*landing animation*/
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.main-landing{
+  background-image: url('./Assets/Images/panneaux.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Set the initial height to fill the viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+
+}
+.landing-container {
+  font-family: 'Markot-Book';
+  color: white;
+  font-size: 2.5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  animation: fadeInUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.glace {
+  backdrop-filter: blur(30px); /* Apply blur effect */
+  background-color: rgba(255, 255, 255, 0.3); /* Apply tint of black */
+  border-radius: 10px;
+  padding: 0px 10px 0px 10px;
+  text-align: center;
+  font-family: 'Markot-Book';
+} 
+.GetStarted-link {
+   position: relative;
+  color: black;
+  background-color: palevioletred;
+  text-decoration: none;
+  padding: 10px;
+  font-family: 'Markot-Bold';
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 13rem;
+  text-align: center; 
+}
+
+.GetStarted-link::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+  transform: translateY(-100%);
+}
+.GetStarted-link:hover::before {
+  transform: translateY(0);
+}
+.GetStarted-link:hover {
+  color: white;
+  background-color: #ffc451;
+}
+@media (max-width: 768px) {
+  .main-landing {
+    height: 50vh; /* Adjust the height for smaller screens */
+    display: flex;
+    justify-content: center;
+  }
+  .landing-container {
+    margin-right: 0;
+  }
+  nav{
+    display: none;
+  }
+  .container-Hamburger{
+    display: block;
+  }
+}
+/*-------------------BODY--------------------*/
+.HowItWorks-container{
+}
+/*Animate on scroll*/
+@media(prefers-reduced-motion: reduce){
+.hidden{
+  transition: none;
+}
+}
+.hidden{
+opacity: 0;
+transition: all 1s;
+filter: blur(5px);
+transform: translateX(-100%);
+display: flex;
+justify-content: space-evenly;
+}
+.show{
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+/* styles for Body */
+.child-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 50%;
+}
+.body-container h1{
+  font-family: 'Markot';
+  color: #ffc451;
+  font-size: x-large;
+}
+.body-container h4{
+  font-family: 'Markot-Book';
+  color: rgba(0, 0, 0, 0.7);
+  font-size: large;
+}
+.Alphabet{
+  color: #ffc451;
+  font-family: 'Markot-Bold';
+  font-size: large;
+  margin-right: 7px;
+}
+ .subtitle{
+  color: rgba(0, 0, 0, 0.7);
+  font-family: 'Markot-Bold';
+  font-size: large;
+  margin-bottom: -10px;
+  margin-right: 7px;
+}
+.text{
+  font-family: 'Markot-Regular';
+  font-size: large;
+}
+.resume{
+  color: #ffc451;
+  font-family: 'Markot';
+  font-size: large; 
+}
+.responsive-image  {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.HowItWorks-child , .LumiDesignFor-child, .OurMission-child{
+  width: 80%;
+}
+@media (max-width: 768px) {
+.child-container{
+  width: 100%;
+}
+.child-container {
+  order: 2;
+}
+
+.image-container {
+  order: 1;
+}
+.hidden{
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: wrap;
+  }
+  .HowItWorks-child , .LumiDesignFor-child, .OurMission-child{
+    width: 100%;
+  }
+}
+/*-------------------Questions PARTS--------------------*/
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ffc451;
+}
+.Questions-div{
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.Questions-div h3{
+  font-family: 'Markot-Book';
+  color: #ffc451;
+}
+.accordion{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.arrowClosed{
+  color: gray;
+  font-size: 20px;
+  transition: transform 0.5s ease;
+  transform: rotate(180deg);
+}
+.arrowOpened{
+  color: gray;
+  font-size: 20px;
+  transition: transform 0.5s ease;
+  transform: rotate(0deg);
+}
+.accordion-details-closed{
+  height: 1px; 
+  transition: height 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955),opacity 0.5s ease-in-out;
+  opacity: 0;
+  width: 50%;
+}
+.accordion-details-opened{
+  height: 100px;   
+  transition: height 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955),opacity 0.5s ease-in-out;
+  opacity: 1;
+  width: 50%;
+  margin: -10px 0;
+}
+.accordion-toggle{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion-toggle p{
+  color: #ffc451;
+  font-family: 'Markot';
+}
+@media (max-width: 768px) {
+  .accordion-details-opened{
+    width: 95%;
+  } 
+  .accordion{
+    width: 100%;
+  }
+}
+.footer {
+  background-color: #333;
+  color: #ffc451;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-info {
+  font-size: 14px;
+}
+
+.footer-info a {
+  color: white;
+  text-decoration: underline;
+}
+.about-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  height: 100vh;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-page h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.about-page p {
+  font-size: 15px;
+  line-height: 1.5;
+  font-family: 'Markot-Book';
+}
+.about-page p span{
+  color: #ffc451;
+}
