@@ -14,80 +14,93 @@ import pompe from '../Assets/Images/oip.webp';
 Modal.setAppElement('#root'); // Point d'accès racine de l'application pour react-modal
 
 const Questions = () => {
-  const CustomCard = ({ question, index, onImageClick }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
-    const cardRef = useRef(null);
+ 
+const CustomCard = ({ question, index, onImageClick }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef(null);
 
-    useEffect(() => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          } else {
-            setIsVisible(false);
-          }
-        });
-      });
-
-      if (cardRef.current) {
-        observer.observe(cardRef.current);
-      }
-
-      return () => {
-        if (cardRef.current) {
-          observer.unobserve(cardRef.current);
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
         }
-      };
-    }, []);
-
-    const spring = useSpring({
-      opacity: isVisible ? 1 : 0,
-      transform: isVisible ? 'translateY(0)' : 'translateY(-100px)',
-      delay: index * 100,
+      });
     });
 
-    const handleClick = () => {
-      setIsOpen(!isOpen);
-    };
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
 
-    return (
-      <animated.div style={spring} ref={cardRef}>
-        <Card>
-          <CardHeader
-            titleTypographyProps={{
-              variant: 'subtitle2',
-              fontFamily: 'Markot-Regular',
-              color:'#ffc451',
-            }}
-            subheaderTypographyProps={{
-              variant: 'caption',
-              fontFamily: 'Markot-Regular',
-            }}
-            title={question.Nom}
-            // subheader={question.Prix}
-            subheader={question.mode}
-            onClick={handleClick}
-            action={<FiChevronUp className={isOpen ? 'arrowOpened' : 'arrowClosed'} size={23} />}
-          />
-          <CardMedia
-            component="img"
-            height="140"
-            image={question.image}
-            alt={question.Nom}
-            onClick={onImageClick}
-            style={{ cursor: 'pointer' }}
-          />
-          {isOpen && (
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, []);
+
+  const spring = useSpring({
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? 'translateY(0)' : 'translateY(-100px)',
+    delay: index * 100,
+  });
+
+  const expandSpring = useSpring({
+    height: isOpen ? 'auto' : 0,
+    opacity: isOpen ? 1 : 0,
+    delay: 200,
+  });
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <animated.div style={spring} ref={cardRef}>
+      <Card>
+        <CardHeader
+          titleTypographyProps={{
+            variant: 'subtitle2',
+            fontFamily: 'Markot-Regular',
+            color: '#ffc451',
+          }}
+          subheaderTypographyProps={{
+            variant: 'caption',
+            fontFamily: 'Markot-Regular',
+          }}
+          title={question.Nom}
+          subheader={question.mode}
+          onClick={handleClick}
+          action={
+            <FiChevronUp
+              className={isOpen ? 'arrowOpened' : 'arrowClosed'}
+              size={23}
+              onClick={handleClick}
+            />
+          }
+        />
+        <CardMedia
+          component="img"
+          height="140"
+          image={question.image}
+          alt={question.Nom}
+          onClick={onImageClick}
+          style={{ cursor: 'pointer' }}
+        />
+        {isOpen && (
+          <animated.div style={expandSpring}>
             <CardContent style={{ flexGrow: 1 }}>
               <p>{question.desc}</p>
-              {/* <p>{question.mode}</p> */}
             </CardContent>
-          )}
-        </Card>
-      </animated.div>
-    );
-  };
+          </animated.div>
+        )}
+      </Card>
+    </animated.div>
+  );
+};
 
   const questionsAndAnswerArray = [
     {

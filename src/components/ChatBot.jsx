@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../chatBot.css';
 import chat from '../Assets/Icons/chatbox-icon.svg';
 import { Send } from '@mui/icons-material';
+import { useSpring , animated} from '@react-spring/web';
 
 class Chatbox {
   constructor() {
@@ -96,6 +97,11 @@ class Chatbox {
 }
 
 const Chatbot = () => {
+  const [chatboxVisible, setChatboxVisible] = useState(false);
+  const toggleChatbox = () => {
+    setChatboxVisible(!chatboxVisible);
+  };
+
   useEffect(() => {
     const chatbox = new Chatbox();
     chatbox.display();
@@ -103,18 +109,25 @@ const Chatbot = () => {
 
   const getGreeting=()=> {
     const now = new Date();
-    const hour = now.getHours();  
+    const hour = now.getHours();
+  
     if (hour >= 5 && hour < 18) {
       return "Bonjour!";
     } else {
       return "Bonsoir!";
     }
   }
+  const springProps = useSpring({
+    opacity: chatboxVisible ? 1 : 0,
+    transform: chatboxVisible ? 'translateY(-10)' : 'translateY(-30px)',
+    config: { tension: 200, friction: 10 },    
+  });
+  
   return (
     <div className="container">
       <meta name="description" content="Obtenez de l'aide instantanée avec notre chatbot de support en ligne. Posez vos questions et obtenez des réponses rapides. Essayez notre chatbot dès maintenant!" />
       <div className="chatbox">
-        <div className="chatbox__support">
+        <animated.div className="chatbox__support" style={springProps}>
           <div className="chatbox__header">
             <div className="chatbox__image--header">
               <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="image" />
@@ -131,9 +144,9 @@ const Chatbot = () => {
             <input type="text" placeholder="Entrez votre message..." />
             <button className="chatbox__send--footer send__button"><Send  style={{color: '#ffc451'}} color='#ffc451'/> </button>
           </div>
-        </div>
+        </animated.div>
         <div className="chatbox__button">
-          <button><img src={chat} alt="Chatbox Icon" /></button>
+          <button onClick={toggleChatbox}><img src={chat} alt="Chatbox Icon" /></button>
         </div>
       </div>
     </div>

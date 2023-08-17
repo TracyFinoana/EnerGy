@@ -1,7 +1,6 @@
 import React from 'react';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Footer = () => {
   return (
@@ -15,7 +14,7 @@ const Footer = () => {
           <a href="https://www.instagram.com/swiss.energy.company/" target="_blank" rel="noopener noreferrer"><InstagramIcon /></a>
         </div>
         <p>&copy; {new Date().getFullYear()} SWISS ENERGY COMPANY</p>
-        <p className="footer-dev">Fait avec <FavoriteIcon style={{ color: 'red' }} fontSize='5px'/> par epsylon</p>
+        <p className="footer-dev">Fait par epsylon</p>
       </div>
     </footer>
   );
