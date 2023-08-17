@@ -40,7 +40,9 @@ class Chatbox {
       chatbox.classList.remove('chatbox--active');
     }
   }
-
+  
+  
+  
   onSendButton(chatbox) {
     var textField = chatbox.querySelector('input');
     let text1 = textField.value;
@@ -99,6 +101,15 @@ const Chatbot = () => {
     chatbox.display();
   }, []);
 
+  const getGreeting=()=> {
+    const now = new Date();
+    const hour = now.getHours();  
+    if (hour >= 5 && hour < 18) {
+      return "Bonjour!";
+    } else {
+      return "Bonsoir!";
+    }
+  }
   return (
     <div className="container">
       <meta name="description" content="Obtenez de l'aide instantanée avec notre chatbot de support en ligne. Posez vos questions et obtenez des réponses rapides. Essayez notre chatbot dès maintenant!" />
@@ -110,7 +121,7 @@ const Chatbot = () => {
             </div>
             <div className="chatbox__content--header">
               <h4 className="chatbox__heading--header">Chat Bot</h4>
-              <p className="chatbox__description--header">Bonjour! Je suis Nancy, En quoi puis-je vous aider?</p>
+              <p className="chatbox__description--header">{getGreeting()} Je suis Nancy, En quoi puis-je vous aider?</p>
             </div>
           </div>
           <div className="chatbox__messages">
