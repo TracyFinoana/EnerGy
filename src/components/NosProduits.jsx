@@ -53,7 +53,7 @@ const CustomCard = ({ question, index, onImageClick }) => {
     opacity: isOpen ? 1 : 0,
     delay: 200,
   });
-
+  
   const handleClick = () => {
     setIsOpen(!isOpen);
   };

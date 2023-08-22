@@ -138,16 +138,20 @@ display: flex;
     transform: translateY(0);
   }
 }
-.main-landing{
+.main-landing {
+  position: relative; /* Ajoutez une position relative pour positionner l'élément ::before */
   background-image: url('./Assets/Images/panneaux.jpg');
   background-size: cover;
   background-position: center;
-  height: 100vh; /* Set the initial height to fill the viewport height */
+  background-color: red;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;
+  overflow: hidden; /* Masquez le contenu qui pourrait déborder */
 }
+
 .main-landing::before {
   content: '';
   position: absolute;
@@ -155,8 +159,10 @@ display: flex;
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 10%; /* Ajustez ce pourcentage selon vos besoins */
   background-color: rgba(0, 0, 0, 0.15);
 }
+
 .landing-container {
   font-family: 'Markot-Book';
   color: white;
