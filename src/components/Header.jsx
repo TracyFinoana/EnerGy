@@ -2,7 +2,7 @@ import React , {useEffect, useState} from 'react';
 import Logo from '../Assets/Images/logoSwis.png'
 import { Sling as Hamburger } from "hamburger-react"
 import { useSpring , animated} from '@react-spring/web'
-import { Link, Element, Events, scrollSpy } from 'react-scroll';
+import { Link} from 'react-scroll';
 import '../../src/App.css';
 
 const Header = () => {

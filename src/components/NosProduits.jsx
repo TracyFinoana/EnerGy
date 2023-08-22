@@ -53,7 +53,7 @@ const CustomCard = ({ question, index, onImageClick }) => {
     opacity: isOpen ? 1 : 0,
     delay: 200,
   });
-
+  
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
@@ -119,23 +119,7 @@ const CustomCard = ({ question, index, onImageClick }) => {
         'Pompe à chaleur, matériels sanitaires, dossier administratifs, forfait pose, Contrôle et mise en service',
       mode: 'CLÉS EN MAINS',
       image: panneaux,
-    },    {
-      Nom: 'PANNEAUX PHOTOVOLTAIQUE',
-      Prix: '9 900,00 CHF',
-      desc:
-        'Panneaux photovoltaïques made in suisse, structure de Fixation K2 Système, Micro-onduleur ENPHASE, Installations et Accessoires ainsi que vos démarches administratives',
-      mode: 'INSTALLATION CLÉS EN MAIN',
-      image: pompe,
-
-    },
-   {
-      Nom: 'POMPE A CHALEUR',
-      Prix: '19 990,00 CHF',
-      desc:
-        'Pompe à chaleur, matériels sanitaires, dossier administratifs, forfait pose, Contrôle et mise en service',
-      mode: 'CLÉS EN MAINS',
-      image: panneaux,
-    },
+    }
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);

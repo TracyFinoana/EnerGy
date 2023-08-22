@@ -8,8 +8,6 @@ import { makeStyles } from '@mui/styles';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import fr from 'date-fns/locale/fr';
-import { format } from 'date-fns';
 import emailjs from '@emailjs/browser';
 import { CircularProgress } from '@mui/material';
 const useStyles = makeStyles((theme) => ({
@@ -155,12 +153,8 @@ const [loading,setloading] = useState(false)
                 value={formData.rendezVous}
                 className={classes.focused}
                 sx={{ width: '100%' }}
-                
-                renderDay={(day, _value, DayProps) => {
-                    const formattedDate = format(day, 'dd MMMM yy', { locale: fr });
-                    return <span {...DayProps}>{formattedDate}</span>;
-                  }}
-                
+                format='dd MMM yyyy'
+                autoFocus          
                 onChange={(date) =>
                   setFormData((prevData) => ({
                     ...prevData,
